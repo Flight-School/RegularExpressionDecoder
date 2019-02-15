@@ -1,4 +1,4 @@
-# RegularExpressionDecoder
+# Regular Expression Decoder
 
 A decoder that constructs objects from regular expression matches.
 
