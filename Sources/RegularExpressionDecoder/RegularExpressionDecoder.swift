@@ -42,10 +42,6 @@ extension _RegularExpressionDecoder: Decoder {
         precondition(self.container == nil)
     }
 
-    fileprivate func assertMultipleMatches() {
-        precondition(self.matches.count == 1)
-    }
-
     func container<Key>(keyedBy type: Key.Type) -> KeyedDecodingContainer<Key> where Key : CodingKey {
         assertCanCreateContainer()
 
