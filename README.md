@@ -1,6 +1,7 @@
 # RegularExpressionDecoder
 
 A decoder that constructs objects from regular expression matches.
+
 This is experimental, and not intended for production use.
 
 ---
@@ -8,7 +9,6 @@ This is experimental, and not intended for production use.
 For more information about creating your own custom decoders,
 consult Chapter 7 of the
 [Flight School Guide to Swift Codable](https://flight.school/books/codable).
-
 For more information about using regular expressions in Swift,
 check out Chapter 6 of the
 [Flight School Guide to Swift Strings](https://flight.school/books/strings).
