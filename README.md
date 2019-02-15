@@ -1,6 +1,22 @@
 # RegularExpressionDecoder
 
-A decoder that decodes objects from regular expression matches.
+A decoder that constructs objects from regular expression matches.
+This is experimental, and not intended for production use.
+
+---
+
+For more information about creating your own custom decoders,
+consult Chapter 7 of the
+[Flight School Guide to Swift Codable](https://flight.school/books/codable).
+
+For more information about using regular expressions in Swift,
+check out Chapter 6 of the
+[Flight School Guide to Swift Strings](https://flight.school/books/strings).
+
+## Requirements
+
+- Swift 5+
+- iOS 11+ or macOS 10.13+
 
 ## Usage
 
@@ -54,3 +70,7 @@ try decoder.decode([Stock].self, from: ticker)
 ## License
 
 MIT
+
+## Contact
+
+Mattt ([@mattt](https://twitter.com/mattt))
