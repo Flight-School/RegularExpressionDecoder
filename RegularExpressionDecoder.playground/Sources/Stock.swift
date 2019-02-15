@@ -28,3 +28,16 @@ public struct Stock: Decodable {
         }
     }
 }
+
+
+extension Stock.Sign: CustomStringConvertible {
+    var description: String {
+        return self.rawValue
+    }
+}
+
+extension Stock: CustomStringConvertible {
+    public var description: String {
+        return "\(self.symbol) \(self.price)\(self.sign)\(self.change)"
+    }
+}

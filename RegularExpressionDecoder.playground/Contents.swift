@@ -1,7 +1,6 @@
 import RegularExpressionDecoder
 
 let pattern = #"""
-(?x)
 \b
 (?<symbol>[A-Z]{1,4}) \s+
 (?<price>\d{1,}\.\d{2}) \s*
@@ -18,6 +17,7 @@ MSFT 106.57🞃0.24
 SWIFT 5.0.0🞁1.0.0
 """
 
-let decoder = try RegularExpressionDecoder(pattern: pattern)
+let decoder = try RegularExpressionDecoder(pattern: pattern,
+                                           options: .allowCommentsAndWhitespace)
+
 try decoder.decode([Stock].self, from: ticker)
-// Decodes AAPL, GOOG, AMZN, and MSFT
