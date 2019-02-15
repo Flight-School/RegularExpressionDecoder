@@ -28,9 +28,9 @@ struct Stock: Decodable {
     var price: Double
 
     enum Sign: String, Decodable {
-        case gain = "🞁"
+        case gain = "▲"
         case unchanged = "="
-        case loss = "🞃"
+        case loss = "▼"
     }
 
     private var sign: Sign
@@ -49,17 +49,17 @@ let pattern = #"""
 \b
 (?<symbol>[A-Z]{1,4}) \s+
 (?<price>\d{1,}\.\d{2}) \s*
-(?<sign>([🞁🞃](?!0\.00))|(=(?=0\.00)))
+(?<sign>([▲▼](?!0\.00))|(=(?=0\.00)))
 (?<change>\d{1,}\.\d{2})
 \b
 """#
 
 let ticker = """
-AAPL 170.69🞁0.51
-GOOG 1122.57🞁2.41
-AMZN 1621.48🞃18.52
-MSFT 106.57🞃0.24
-SWIFT 5.0.0🞁1.0.0 // Invalid
+AAPL 170.69▲0.51
+GOOG 1122.57▲2.41
+AMZN 1621.48▼18.52
+MSFT 106.57▼0.24
+SWIFT 5.0.0▲1.0.0 // Invalid
 """
 
 let decoder = try RegularExpressionDecoder(pattern: pattern)
