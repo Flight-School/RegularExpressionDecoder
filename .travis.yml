@@ -1,3 +1,4 @@
+osx_image: xcode10.2
 language: objective-c
 xcode_project: RegularExpressionDecoder.xcodeproj
 xcode_scheme: RegularExpressionDecoder
