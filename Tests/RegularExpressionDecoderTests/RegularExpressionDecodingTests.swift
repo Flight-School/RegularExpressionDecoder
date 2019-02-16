@@ -95,7 +95,7 @@ class RegularExpressionDecodingTests: XCTestCase {
     }
 
     func testDecodeInvalid() {
-        let string = "AAPL 170.69"
+        let string = "AAPL 170.69" // missing sign and change
 
         XCTAssertThrowsError(try self.decoder.decode(Stock.self, from: string))
     }
