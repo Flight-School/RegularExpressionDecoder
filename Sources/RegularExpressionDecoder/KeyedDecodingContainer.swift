@@ -49,7 +49,11 @@ extension _RegularExpressionDecoder {
 @available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension _RegularExpressionDecoder.KeyedContainer: KeyedDecodingContainerProtocol {
     var allKeys: [Key] {
-        return [] // FIXME
+        guard let captureGroupNames = self.userInfo[._captureGroupNames] as? [String] else {
+            return []
+        }
+        
+        return captureGroupNames.compactMap { Key(stringValue: $0) }
     }
 
     func contains(_ key: Key) -> Bool {

@@ -6,6 +6,7 @@ import Foundation
 @available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 final public class RegularExpressionDecoder<T: Decodable> {
     private(set) var regularExpression: NSRegularExpression
+    var captureGroupNames: [String]?
 
     public enum Error: Swift.Error {
         case noMatches
@@ -14,6 +15,7 @@ final public class RegularExpressionDecoder<T: Decodable> {
 
     public init<CodingKeys>(pattern: RegularExpressionPattern<T, CodingKeys>, options: NSRegularExpression.Options = []) throws {
         self.regularExpression = try NSRegularExpression(pattern: pattern.description, options: options)
+        self.captureGroupNames = pattern.captures?.map { $0.stringValue }
     }
 
     public func decode(_ type: T.Type, from string: String, options: NSRegularExpression.MatchingOptions = []) throws -> T {
@@ -25,6 +27,8 @@ final public class RegularExpressionDecoder<T: Decodable> {
             throw Error.noMatches
         case 1:
             let decoder = _RegularExpressionDecoder(string: string, matches: matches)
+            decoder.userInfo[._captureGroupNames] = self.captureGroupNames
+            
             return try T(from: decoder)
         default:
             throw Error.tooManyMatches
@@ -40,6 +44,8 @@ final public class RegularExpressionDecoder<T: Decodable> {
             return []
         default:
             let decoder = _RegularExpressionDecoder(string: string, matches: matches)
+            decoder.userInfo[._captureGroupNames] = self.captureGroupNames
+
             return try [T](from: decoder)
         }
     }
@@ -60,6 +66,10 @@ final class _RegularExpressionDecoder {
         self.string = string
         self.matches = matches
     }
+}
+
+extension CodingUserInfoKey {
+    static let _captureGroupNames = CodingUserInfoKey(rawValue: "captureGroupNames")!
 }
 
 @available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
