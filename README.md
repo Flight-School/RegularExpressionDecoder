@@ -175,6 +175,16 @@ let pattern: RegularExpressionPattern<Stock, Stock.CodingKeys> = #"""
 """#
 ```
 
+> Note:
+> This example benefits greatly from another new feature in Swift 5:
+> <dfn>raw string literals</dfn>.
+> Those octothorps (`#`) at the start and end
+> tell the compiler to ignore escape characters (`\`)
+> unless they also include an octothorp (`\#( )`).
+> Using raw string literals,
+> we can write regular expression metacharacters like `\b`, `\d`, and `\s`
+> without double escaping them (i.e. `\\b`).
+
 Thanks to `ExpressibleByStringInterpolation`,
 we can restrict interpolation segments to only accept those coding keys,
 thereby ensuring a direct 1:1 match between capture groups
