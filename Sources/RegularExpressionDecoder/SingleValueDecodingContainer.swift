@@ -1,6 +1,6 @@
 import Foundation
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension _RegularExpressionDecoder {
     final class SingleValueContainer {
         let string: String
@@ -17,7 +17,7 @@ extension _RegularExpressionDecoder {
     }
 }
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension _RegularExpressionDecoder.SingleValueContainer: SingleValueDecodingContainer {
     func decodeNil() -> Bool {
         return self.match == nil
@@ -37,5 +37,5 @@ extension _RegularExpressionDecoder.SingleValueContainer: SingleValueDecodingCon
     }
 }
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension _RegularExpressionDecoder.SingleValueContainer: RegularExpressionDecodingContainer {}

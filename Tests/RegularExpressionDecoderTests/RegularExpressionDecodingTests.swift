@@ -2,7 +2,7 @@ import XCTest
 import Foundation
 @testable import RegularExpressionDecoder
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 struct Stock: Decodable {
     let symbol: String
     var price: Double
@@ -31,7 +31,7 @@ struct Stock: Decodable {
     }
 }
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 class RegularExpressionDecodingTests: XCTestCase {
     var decoder: RegularExpressionDecoder<Stock>!
 

@@ -1,6 +1,6 @@
 import Foundation
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension _RegularExpressionDecoder {
     final class UnkeyedContainer {
         let string: String
@@ -19,7 +19,7 @@ extension _RegularExpressionDecoder {
     }
 }
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension _RegularExpressionDecoder.UnkeyedContainer: UnkeyedDecodingContainer {
     var count: Int? {
         return self.matches.count
@@ -63,5 +63,5 @@ extension _RegularExpressionDecoder.UnkeyedContainer: UnkeyedDecodingContainer {
     }
 }
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension _RegularExpressionDecoder.UnkeyedContainer: RegularExpressionDecodingContainer {}

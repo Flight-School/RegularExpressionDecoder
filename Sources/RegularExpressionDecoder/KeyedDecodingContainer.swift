@@ -1,6 +1,6 @@
 import Foundation
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension NSTextCheckingResult {
     func range<Key>(for key: Key) -> NSRange? where Key: CodingKey {
         if let position = key.intValue {
@@ -11,7 +11,7 @@ extension NSTextCheckingResult {
     }
 }
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension _RegularExpressionDecoder {
     final class KeyedContainer<Key> where Key: CodingKey {
         let string: String
@@ -46,7 +46,7 @@ extension _RegularExpressionDecoder {
     }
 }
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension _RegularExpressionDecoder.KeyedContainer: KeyedDecodingContainerProtocol {
     var allKeys: [Key] {
         return [] // FIXME
@@ -106,5 +106,5 @@ extension _RegularExpressionDecoder.KeyedContainer: KeyedDecodingContainerProtoc
     }
 }
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension _RegularExpressionDecoder.KeyedContainer: RegularExpressionDecodingContainer {}

@@ -3,7 +3,7 @@ import Foundation
 /**
 
  */
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 final public class RegularExpressionDecoder<T: Decodable> {
     private(set) var regularExpression: NSRegularExpression
     
@@ -45,7 +45,7 @@ final public class RegularExpressionDecoder<T: Decodable> {
     }
 }
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 final class _RegularExpressionDecoder {
     var codingPath: [CodingKey] = []
 
@@ -61,7 +61,7 @@ final class _RegularExpressionDecoder {
     }
 }
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 extension _RegularExpressionDecoder: Decoder {
     fileprivate func assertCanCreateContainer() {
         precondition(self.container == nil)
@@ -95,5 +95,5 @@ extension _RegularExpressionDecoder: Decoder {
     }
 }
 
-@available(OSX 10.13, iOS 11, *)
+@available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 protocol RegularExpressionDecodingContainer: class {}
