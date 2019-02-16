@@ -2,24 +2,15 @@ import XCTest
 import Foundation
 @testable import RegularExpressionDecoder
 
+@available(OSX 10.13, iOS 11, *)
 struct Stock: Decodable {
-    static let pattern = #"""
-    (?x)
-    \b
-    (?<symbol>[A-Z]{1,4}) \s+
-    (?<price>\d{1,}\.\d{2}) \s*
-    (?<sign>([🞁🞃](?!0\.00))|(=(?=0\.00)))
-    (?<change>\d{1,}\.\d{2})
-    \b
-    """#
-
     let symbol: String
     var price: Double
 
     enum Sign: String, Decodable {
-        case gain = "🞁"
+        case gain = "▲"
         case unchanged = "="
-        case loss = "🞃"
+        case loss = "▼"
     }
 
     private var sign: Sign
@@ -31,18 +22,34 @@ struct Stock: Decodable {
         case .loss: return -change
         }
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case symbol
+        case price
+        case sign
+        case change
+    }
 }
 
 @available(OSX 10.13, iOS 11, *)
 class RegularExpressionDecodingTests: XCTestCase {
-    var decoder: RegularExpressionDecoder!
+    var decoder: RegularExpressionDecoder<Stock>!
 
     override func setUp() {
-        self.decoder = RegularExpressionDecoder(pattern: Stock.pattern)
+        let pattern: RegularExpressionPattern<Stock, Stock.CodingKeys> = #"""
+        \b
+        (?<\#(.symbol)>[A-Z]{1,4}) \s+
+        (?<\#(.price)>\d{1,}\.\d{2}) \s*
+        (?<\#(.sign)>([▲▼](?!0\.00))|(=(?=0\.00)))
+        (?<\#(.change)>\d{1,}\.\d{2})
+        \b
+        """#
+        
+        self.decoder = try! RegularExpressionDecoder<Stock>(pattern: pattern, options: .allowCommentsAndWhitespace)
     }
 
     func testDecodeSingle() {
-        let string = "AAPL 170.69🞁0.51"
+        let string = "AAPL 170.69▲0.51"
         let stock = try! self.decoder.decode(Stock.self, from: string)
 
         XCTAssertEqual(stock.symbol, "AAPL")
@@ -52,11 +59,11 @@ class RegularExpressionDecodingTests: XCTestCase {
 
     func testDecodeMultiple() {
         let string = """
-        AAPL 170.69🞁0.51
-        GOOG 1122.57🞁2.41
-        AMZN 1621.48🞃18.52
+        AAPL 170.69▲0.51
+        GOOG 1122.57▲2.41
+        AMZN 1621.48▼18.52
         MSFT 106.57=0.00
-        SWIFT 5.0🞁1.0.0
+        SWIFT 5.0▲1.0.0
         """
 
         let stocks = try! self.decoder.decode([Stock].self, from: string)

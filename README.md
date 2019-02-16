@@ -2,8 +2,6 @@
 
 A decoder that constructs objects from regular expression matches.
 
-This is experimental, and not intended for production use.
-
 ---
 
 For more information about creating your own custom decoders,
@@ -22,6 +20,14 @@ check out Chapter 6 of the
 
 ```swift
 import RegularExpressionDecoder
+
+let ticker = """
+AAPL 170.69▲0.51
+GOOG 1122.57▲2.41
+AMZN 1621.48▼18.52
+MSFT 106.57▼0.24
+SWIFT 5.0.0▲1.0.0
+"""
 
 struct Stock: Decodable {
     let symbol: String
@@ -44,25 +50,20 @@ struct Stock: Decodable {
     }
 }
 
-let pattern = #"""
-(?x)
+let pattern: RegularExpressionPattern<Stock, Stock.CodingKeys> = #"""
 \b
-(?<symbol>[A-Z]{1,4}) \s+
-(?<price>\d{1,}\.\d{2}) \s*
-(?<sign>([▲▼](?!0\.00))|(=(?=0\.00)))
-(?<change>\d{1,}\.\d{2})
+(?<\#(.symbol)>[A-Z]{1,4}) \s+
+(?<\#(.price)>\d{1,}\.\d{2}) \s*
+(?<\#(.sign)>([▲▼](?!0\.00))|(=(?=0\.00)))
+(?<\#(.change)>\d{1,}\.\d{2})
 \b
 """#
 
-let ticker = """
-AAPL 170.69▲0.51
-GOOG 1122.57▲2.41
-AMZN 1621.48▼18.52
-MSFT 106.57▼0.24
-SWIFT 5.0.0▲1.0.0 // Invalid
-"""
+let decoder = try RegularExpressionDecoder<Stock>(
+                        pattern: pattern,
+                        options: .allowCommentsAndWhitespace
+                  )
 
-let decoder = try RegularExpressionDecoder(pattern: pattern)
 try decoder.decode([Stock].self, from: ticker)
 // Decodes [AAPL, GOOG, AMZN, MSFT]
 ```
