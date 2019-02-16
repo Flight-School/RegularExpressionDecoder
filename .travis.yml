@@ -1,0 +1,4 @@
+language: objective-c
+xcode_project: RegularExpressionDecoder.xcodeproj
+xcode_scheme: RegularExpressionDecoder
+xcode_destination: platform=macOs
