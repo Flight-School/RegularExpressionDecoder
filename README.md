@@ -1,5 +1,9 @@
 # Regular Expression Decoder
 
+[![Build Status][build status badge]][build status]
+[![License][license badge]][license]
+[![Swift Version][swift version badge]][swift version]
+
 A decoder that constructs objects from regular expression matches.
 
 ---
@@ -250,3 +254,10 @@ MIT
 ## Contact
 
 Mattt ([@mattt](https://twitter.com/mattt))
+
+[build status]: https://travis-ci.com/Flight-School/RegularExpressionDecoder
+[build status badge]: https://api.travis-ci.com/Flight-School/RegularExpressionDecoder.svg?branch=master
+[license]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license badge]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[swift version]: https://swift.org/download/
+[swift version badge]: http://img.shields.io/badge/swift%20version-5.0-orange.svg?style=flat
