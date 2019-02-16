@@ -6,7 +6,7 @@ import Foundation
 @available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 final public class RegularExpressionDecoder<T: Decodable> {
     private(set) var regularExpression: NSRegularExpression
-    
+
     public enum Error: Swift.Error {
         case noMatches
         case tooManyMatches
@@ -19,7 +19,7 @@ final public class RegularExpressionDecoder<T: Decodable> {
     public func decode(_ type: T.Type, from string: String, options: NSRegularExpression.MatchingOptions = []) throws -> T {
         let range = NSRange(string.startIndex..<string.endIndex, in: string)
         let matches = self.regularExpression.matches(in: string, options: options, range: range)
-        
+
         switch matches.count {
         case 0:
             throw Error.noMatches
@@ -30,11 +30,11 @@ final public class RegularExpressionDecoder<T: Decodable> {
             throw Error.tooManyMatches
         }
     }
-    
+
     public func decode(_ type: [T].Type, from string: String, options: NSRegularExpression.MatchingOptions = []) throws -> [T] {
         let range = NSRange(string.startIndex..<string.endIndex, in: string)
         let matches = self.regularExpression.matches(in: string, options: options, range: range)
-        
+
         switch matches.count {
         case 0:
             return []
@@ -46,6 +46,7 @@ final public class RegularExpressionDecoder<T: Decodable> {
 }
 
 @available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
+// swiftlint:disable:next type_name
 final class _RegularExpressionDecoder {
     var codingPath: [CodingKey] = []
 
@@ -66,13 +67,13 @@ extension _RegularExpressionDecoder: Decoder {
     fileprivate func assertCanCreateContainer() {
         precondition(self.container == nil)
     }
-    
+
     func singleValueContainer() -> SingleValueDecodingContainer {
         assertCanCreateContainer()
-        
+
         let container = SingleValueContainer(string: self.string, match: self.matches.first, codingPath: self.codingPath, userInfo: self.userInfo)
         self.container = container
-        
+
         return container
     }
 

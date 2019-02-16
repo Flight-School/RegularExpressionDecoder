@@ -22,7 +22,7 @@ struct Stock: Decodable {
         case .loss: return -change
         }
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case symbol
         case price
@@ -31,6 +31,7 @@ struct Stock: Decodable {
     }
 }
 
+// swiftlint:disable force_try
 @available(OSX 10.13, iOS 11, tvOS 11, watchOS 4, *)
 class RegularExpressionDecodingTests: XCTestCase {
     var decoder: RegularExpressionDecoder<Stock>!
@@ -44,7 +45,7 @@ class RegularExpressionDecodingTests: XCTestCase {
         (?<\#(.change)>\d{1,}\.\d{2})
         \b
         """#
-        
+
         self.decoder = try! RegularExpressionDecoder<Stock>(pattern: pattern, options: .allowCommentsAndWhitespace)
     }
 
