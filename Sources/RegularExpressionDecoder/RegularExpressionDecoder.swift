@@ -28,7 +28,7 @@ final public class RegularExpressionDecoder<T: Decodable> {
         case 1:
             let decoder = _RegularExpressionDecoder(string: string, matches: matches)
             decoder.userInfo[._captureGroupNames] = self.captureGroupNames
-            
+
             return try T(from: decoder)
         default:
             throw Error.tooManyMatches
@@ -69,6 +69,7 @@ final class _RegularExpressionDecoder {
 }
 
 extension CodingUserInfoKey {
+    // swiftlint:disable:next identifier_name
     static let _captureGroupNames = CodingUserInfoKey(rawValue: "captureGroupNames")!
 }
 

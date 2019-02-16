@@ -52,7 +52,7 @@ extension _RegularExpressionDecoder.KeyedContainer: KeyedDecodingContainerProtoc
         guard let captureGroupNames = self.userInfo[._captureGroupNames] as? [String] else {
             return []
         }
-        
+
         return captureGroupNames.compactMap { Key(stringValue: $0) }
     }
 
