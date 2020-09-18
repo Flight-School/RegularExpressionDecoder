@@ -204,7 +204,7 @@ let pattern: RegularExpressionPattern<Stock, Stock.CodingKeys> = #"""
 \b
 (?<\#(.symbol)>[A-Z]{1,4}) \s+
 (?<\#(.price)>\d{1,}\.\d{2}) \s*
-(?<\#(.sign)>([▲▼=])
+(?<\#(.sign)>[▲▼=])
 (?<\#(.change)>\d{1,}\.\d{2})
 \b
 """#
