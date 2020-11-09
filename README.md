@@ -255,8 +255,8 @@ MIT
 
 Mattt ([@mattt](https://twitter.com/mattt))
 
-[build status]: https://travis-ci.com/Flight-School/RegularExpressionDecoder
-[build status badge]: https://api.travis-ci.com/Flight-School/RegularExpressionDecoder.svg?branch=master
+[build status]: https://github.com/Flight-School/RegularExpressionDecoder/actions?query=workflow%3ACI
+[build status badge]: https://github.com/Flight-School/RegularExpressionDecoder/workflows/CI/badge.svg
 [license]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license badge]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [swift version]: https://swift.org/download/
