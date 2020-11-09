@@ -100,10 +100,4 @@ class RegularExpressionDecodingTests: XCTestCase {
 
         XCTAssertThrowsError(try self.decoder.decode(Stock.self, from: string))
     }
-
-    static var allTests = [
-        (testDecodeSingle, "testDecodeSingle"),
-        (testDecodeMultiple, "testDecodeMultiple"),
-        (testDecodeInvalid, "testDecodeInvalid")
-    ]
 }
